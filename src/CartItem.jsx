@@ -6,16 +6,13 @@ import './CartItem.css';
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
+  console.log(dispatch); // Should log a function
 
   const calculateTotalAmount = () => {
-      return cart.reduce((total, item) => {
-        const itemCost = parseFloat(item.cost.replace('$', '')); // Convert cost from string to number
-        return total + item.quantity * itemCost;
-    }, 0).toFixed(2); // Format to two decimal places
+      
   };
 
-  const handleContinueShopping = (e) => {
-    e.preventDefault();
+  const handleContinueShopping = () => {
     onContinueShopping();
   };
 
@@ -41,8 +38,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const calculateTotalCost = (item) => {
-    const itemCost = parseFloat(item.cost.replace('$', '')); // Convert cost to a number
-    return (item.quantity * itemCost).toFixed(2); // Multiply by quantity and format to 2 decimal places
+    
   };
 
   return (
